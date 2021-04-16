@@ -5,7 +5,7 @@ from django.template import loader
 from django.utils.text import slugify
 
 
-def build_action(state_machine_name, trigger, task):
+def get_action(state_machine_name, trigger, task):
     def _add_action_id(action):
         action["id"] = slugify(action["title"])
 
@@ -22,8 +22,8 @@ def build_action(state_machine_name, trigger, task):
     return action
 
 
-def build_state_machine(state_machine_name, initial_state):
+def build_state_machine(state_machine_name, state_name):
     builders = importlib.import_module(
         settings.STATE_MACHINE_CONF
     ).state_machine_builders
-    return builders[state_machine_name](initial_state)
+    return builders[state_machine_name](state_name)

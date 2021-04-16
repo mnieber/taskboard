@@ -29,23 +29,15 @@ import todo.abstract_models
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from .builders import build_action, build_state_machine
+from .builders import build_state_machine, get_action
 
 
-def _state(task):
+def _state_name(task):
     return task.state.split(".")[1]
 
 
 def _state_machine_name(task):
     return task.state.split(".")[0]
-
-
-def _state_machine(task):
-    return build_state_machine(_state_machine_name(task), _state(task))
-
-
-def _triggers(task):
-    return _state_machine(task).get_triggers(_state(task))
 
 
 class Task(todo.abstract_models.AbstractTask):
@@ -59,15 +51,21 @@ class Task(todo.abstract_models.AbstractTask):
     )
 
     def actions(self):
+        state_name = _state_name(self)
+        state_machine_name = _state_machine_name(self)
+        state_machine = build_state_machine(state_machine_name, state_name)
+
         if not self.state:
             return []
         return [
-            build_action(_state_machine_name(self), trigger, self)
-            for trigger in _triggers(self)
+            get_action(state_machine_name, trigger, self)
+            for trigger in state_machine.get_triggers(state_name)
         ]
 
     def transition(self, trigger, *args, **kwargs):
-        state_machine = _state_machine(self)
+        state_machine = build_state_machine(
+            _state_machine_name(self), _state_name(self)
+        )
         if state_machine.dispatch(trigger, *args, **kwargs):
             self.state = "%s.%s" % (
                 _state_machine_name(self),
