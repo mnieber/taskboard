@@ -1,0 +1,48 @@
+{% extends "actions/action_form.html" %}
+
+{% block explanation %}
+  <b>This will</b>
+  <ul>
+    <li>Send an email to the changemaker asking them to do our policy quizzes.</li>
+  </ul>
+
+  <b>Notes</b>
+  <ul>
+    <li>The email text contains special tags such as
+    {% templatetag openvariable %} project_request.changemaker_name {% templatetag closevariable %}.
+    These are placeholders where information is filled in later. You can move these placeholder to a different
+    location in the email, but don't make any changes to the placeholder itself.
+    </li>
+  </ul>
+{% endblock %}
+
+{% block formbody %}
+    <div class="d-flex flex-column">
+      <p><b>Email receipient:</b> {{ project_request.email }}
+      <div class="d-flex flex-column">
+        <b>Subject:</b>
+        <input id="email_subject" name="email_subject" placeholder="" value="Policy quiz">
+      </div>
+      <div class="d-flex flex-column mt-4">
+        <b>Email contents:</b>
+        <textarea id="email_body" name="email_body" rows="8" cols="80" class="emailBody border-0">
+{% include "actions/ProjectRequest.request_quiz_results.email.txt" %}
+        </textarea>
+      </div>
+
+      <div class="d-flex flex-column mt-4">
+        <b class="">Link to the quiz:</b>
+        <input id="quiz_url" name="quiz_url" placeholder="" value="{{ quiz_url }}">
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block btntitle %}Request quiz results{% endblock %}
+{% block btnclass %}btn-secondary{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

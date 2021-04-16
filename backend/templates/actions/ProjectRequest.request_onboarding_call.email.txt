@@ -1,0 +1,12 @@
+Dear {% templatetag openvariable %} project_request.changemaker_name {% templatetag closevariable %},
+
+we would like to call you so that we can learn more about your project.
+Can you please choose a time slot here: {% templatetag openvariable %} calendar_url {% templatetag closevariable %}.
+
+During the call we will work together on a Google document that has all
+the information we need to create a Project Profile on our website.
+If you want, you can already start adding information to this document:
+{% templatetag openvariable %} google_doc_url {% templatetag closevariable %}.
+
+Best regards,
+The FrontlineAid team

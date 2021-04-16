@@ -1,0 +1,6 @@
+Dear {{ project_request.changemaker_name}},
+
+we are very sorry but unfortunately we cannot support you in your project.
+
+Best regards,
+The FrontlineAid team

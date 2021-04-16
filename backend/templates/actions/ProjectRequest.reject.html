@@ -1,0 +1,39 @@
+{% extends "actions/action_form.html" %}
+
+{% block explanation %}
+  <b>This will</b>
+  <ul>
+    <li>(Optionally) Send a rejection email to the Changemaker</li>
+  </ul>
+{% endblock %}
+
+{% block formbody %}
+    <input class="mr-2" type="checkbox" name="send_email" onchange="toggleEmailField(null)"/>
+    <b>Yes, I want to send a rejection email</b>
+
+    <div class="card mt-2">
+      <p>To: {{ project_request.email }}
+      <p>Subject:
+        <input id="email_subject" name="email_subject" placeholder="" value="Your project request">
+      </p>
+      <textarea id="email_body" name="email_body" rows="8" cols="80" class="emailBody border-0">
+{% include "actions/ProjectRequest.reject.email.txt" %}
+      </textarea>
+    </div>
+{% endblock %}
+
+{% block btntitle %}Reject{% endblock %}
+{% block btnclass %}btn-danger{% endblock %}
+
+{% block scripts %}
+<script>
+function toggleEmailField(flag) {
+  var selector = $("#email_subject");
+  var isDisabled = flag === null ? !selector.prop('disabled') : !flag;
+  selector.prop('disabled', isDisabled);
+  $("#email_body").prop('disabled', isDisabled);
+}
+
+ready(function() { toggleEmailField(false) });
+</script>
+{% endblock %}

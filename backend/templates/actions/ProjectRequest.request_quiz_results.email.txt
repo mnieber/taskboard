@@ -1,0 +1,10 @@
+Dear {% templatetag openvariable %} project_request.changemaker_name {% templatetag closevariable %},
+
+we would like you to do some quizzes so that we know that you understand our policies.
+You can find the quiz page here: {% templatetag openvariable %} quiz_url {% templatetag closevariable %}.
+
+When we have received the quiz results then we will create an account for you and send you
+the password for logging in to the website.
+
+Best regards,
+The FrontlineAid team

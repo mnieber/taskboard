@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="{{ action.id }}">
+  <h5 class="card-header">{{ action.title }}</h5>
+
+  <div class="card-body">
+    <div class="actionForm-{{ action.id }}__explanation">
+    {% block explanation %}explanation not set{% endblock %}
+    </div>
+    <hr/>
+
+    <form id="actionForm_{{ action.id }}" method="post" action="{{ action.url }}" role="form" class="d-inline">
+      {% block formbody %}formbody not set{% endblock %}
+
+      <div style="display:inline;">
+        <button class="btn {% block btnclass %}{% endblock %} btn-sm mt-4" type="submit" name="toggle_done">
+          {% block btntitle %}btntitle not set{% endblock %}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+  .{{ action.id }} {
+    background-color: gainsboro;
+  }
+  .{{ action.id }}__explanation {
+  }
+</style>
+
+{% block css %}{% endblock %}
+
+<script type="text/javascript">
+ready(function(e) {
+    var form = $("#actionForm_{{ action.id }}");
+    $(document.csrfTokenField).appendTo(form);
+});
+</script>
+
+{% block scripts %}{% endblock %}

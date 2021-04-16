@@ -1,0 +1,8 @@
+-r requirements.txt
+django-extensions
+factory-boy
+git+git://github.com/jnoortheen/django-pgcli@master#egg=django-pgcli
+ipython
+pudb
+pytest
+pytest-html

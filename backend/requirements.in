@@ -1,0 +1,9 @@
+django-cors-headers
+django-environ
+django-graphql-auth
+Django
+psycopg2
+git+git://github.com/mnieber/django-todo@master#egg=django-todo
+graphene-django
+slackclient
+transitions

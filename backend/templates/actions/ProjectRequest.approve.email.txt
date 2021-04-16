@@ -1,0 +1,10 @@
+Dear {% templatetag openvariable %} project_request.changemaker_name {% templatetag closevariable %},
+
+we are happy that you joined our site! We have created an account for you.
+To reset your password use the following link: {% templatetag openvariable %} password_reset_url {% templatetag closevariable %}.
+
+Based on the information that you gave us, we have created a first version of the
+Project Profile: {% templatetag openvariable %} project_profile_url {% templatetag closevariable %}.
+
+Best regards,
+The FrontlineAid team
