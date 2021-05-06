@@ -1,6 +1,6 @@
 -r requirements.txt
 django-extensions
-factory-boy
+faker
 git+git://github.com/jnoortheen/django-pgcli@master#egg=django-pgcli
 ipython
 pudb

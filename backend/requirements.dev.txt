@@ -4,6 +4,10 @@
 #
 #    pip-compile --output-file=requirements.dev.txt requirements.dev.in
 #
+aiohttp==3.7.4.post0
+    # via
+    #   -r requirements.txt
+    #   slackclient
 aniso8601==7.0.0
     # via
     #   -r requirements.txt
@@ -12,14 +16,25 @@ asgiref==3.3.4
     # via
     #   -r requirements.txt
     #   django
-attrs==20.3.0
-    # via pytest
+async-timeout==3.0.1
+    # via
+    #   -r requirements.txt
+    #   aiohttp
+attrs==21.1.0
+    # via
+    #   -r requirements.txt
+    #   aiohttp
+    #   pytest
 backcall==0.2.0
     # via ipython
 bleach==3.3.0
     # via
     #   -r requirements.txt
     #   django-todo
+chardet==4.0.0
+    # via
+    #   -r requirements.txt
+    #   aiohttp
 cli-helpers[styles]==2.1.0
     # via pgcli
 click==7.1.2
@@ -67,10 +82,8 @@ django==3.2
     #   django-pgcli
     #   django-todo
     #   graphene-django
-factory-boy==3.2.0
-    # via -r requirements.dev.in
 faker==8.1.0
-    # via factory-boy
+    # via -r requirements.dev.in
 graphene-django==2.15.0
     # via
     #   -r requirements.txt
@@ -92,6 +105,10 @@ graphql-relay==2.0.1
     # via
     #   -r requirements.txt
     #   graphene
+idna==3.1
+    # via
+    #   -r requirements.txt
+    #   yarl
 iniconfig==1.1.1
     # via pytest
 ipython-genutils==0.2.0
@@ -100,6 +117,11 @@ ipython==7.22.0
     # via -r requirements.dev.in
 jedi==0.18.0
     # via ipython
+multidict==5.1.0
+    # via
+    #   -r requirements.txt
+    #   aiohttp
+    #   yarl
 packaging==20.9
     # via
     #   -r requirements.txt
@@ -197,6 +219,9 @@ six==1.15.0
     #   promise
     #   python-dateutil
     #   singledispatch
+    #   transitions
+slackclient==2.9.3
+    # via -r requirements.txt
 sqlparse==0.4.1
     # via
     #   -r requirements.txt
@@ -216,6 +241,12 @@ toml==0.10.2
     # via pytest
 traitlets==5.0.5
     # via ipython
+transitions==0.8.8
+    # via -r requirements.txt
+typing-extensions==3.10.0.0
+    # via
+    #   -r requirements.txt
+    #   aiohttp
 unidecode==1.2.0
     # via
     #   -r requirements.txt
@@ -228,6 +259,10 @@ webencodings==0.5.1
     # via
     #   -r requirements.txt
     #   bleach
+yarl==1.6.3
+    # via
+    #   -r requirements.txt
+    #   aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
