@@ -16,10 +16,10 @@ services:
     volumes:
       - ./backend:/app/src
       - $HOME/.config/pudb:/root/.config/pudb
-      - /opt/faid/backend/fish_history:/root/.local/share/fish/fish_history
-      - /opt/faid/backend/pytest_report.html:/app/pytest_report.html
-      - /opt/faid/backend/assets:/app/assets
-      - /opt/faid/backend/ipython:/root/.ipython
+      - /opt/taskboard/backend/fish_history:/root/.local/share/fish/fish_history
+      - /opt/taskboard/backend/pytest_report.html:/app/pytest_report.html
+      - /opt/taskboard/backend/assets:/app/assets
+      - /opt/taskboard/backend/ipython:/root/.ipython
       - backend_site_packages:/usr/local/lib/python3.9/site-packages
       - backend_usr_local_bin:/usr/local/bin
   db:
