@@ -4,8 +4,7 @@ from graphene_django.types import DjangoObjectType
 from graphql_auth import mutations, schema
 from graphql_auth.settings import graphql_auth_settings
 
-import users.models
-from app.utils import try_n_times
+from users import models
 
 # Schema app
 
