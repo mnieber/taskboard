@@ -12,6 +12,13 @@ class ProjectRequestType(DjangoObjectType):
         model = ProjectRequest
 
 
+class ProjectRequestsQuery(object):
+    project_requests = graphene.List(ProjectRequestType)
+
+    def resolve_project_requests(self, info, **kwargs):
+        return ProjectRequest.objects.all()
+
+
 # Mutation
 class CreateProjectRequestInput(graphene.InputObjectType):
     location = graphene.String(required=True)
@@ -41,6 +48,10 @@ class CreateProjectRequest(graphene.Mutation):
         )
 
         return CreateProjectRequest(project_request=project_request, success=True)
+
+
+class Query(ProjectRequestsQuery, graphene.ObjectType):
+    pass
 
 
 class Mutation(graphene.ObjectType):

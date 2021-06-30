@@ -12,6 +12,10 @@ aniso8601==7.0.0
     # via
     #   -r requirements.txt
     #   graphene
+appdirs==1.4.4
+    # via black
+argh==0.26.2
+    # via -r requirements.txt
 asgiref==3.3.4
     # via
     #   -r requirements.txt
@@ -20,13 +24,16 @@ async-timeout==3.0.1
     # via
     #   -r requirements.txt
     #   aiohttp
-attrs==21.1.0
+attrs==21.2.0
     # via
     #   -r requirements.txt
     #   aiohttp
     #   pytest
+    #   pytype
 backcall==0.2.0
     # via ipython
+black==21.6b0
+    # via -r requirements.dev.in
 bleach==3.3.0
     # via
     #   -r requirements.txt
@@ -39,14 +46,18 @@ cli-helpers[styles]==2.1.0
     # via pgcli
 click==7.1.2
     # via
+    #   black
     #   pgcli
     #   pgspecial
 configobj==5.0.6
     # via
     #   cli-helpers
     #   pgcli
-decorator==5.0.7
-    # via ipython
+decorator==4.4.2
+    # via
+    #   -r requirements.txt
+    #   ipython
+    #   networkx
 django-autocomplete-light==3.8.2
     # via
     #   -r requirements.txt
@@ -61,7 +72,7 @@ django-filter==2.4.0
     # via
     #   -r requirements.txt
     #   django-graphql-auth
-django-graphql-auth==0.3.16
+git+git://github.com/mnieber/django-graphql-auth@feature/return-activation-token#egg=django-graphql-auth
     # via -r requirements.txt
 django-graphql-jwt==0.3.0
     # via
@@ -109,11 +120,17 @@ idna==3.1
     # via
     #   -r requirements.txt
     #   yarl
+importlab==0.6.1
+    # via
+    #   -r requirements.txt
+    #   pytype
 iniconfig==1.1.1
     # via pytest
 ipython-genutils==0.2.0
     # via traitlets
 ipython==7.22.0
+    # via -r requirements.dev.in
+isort==5.8.0
     # via -r requirements.dev.in
 jedi==0.18.0
     # via ipython
@@ -122,6 +139,16 @@ multidict==5.1.0
     #   -r requirements.txt
     #   aiohttp
     #   yarl
+mypy-extensions==0.4.3
+    # via black
+networkx==2.5.1
+    # via
+    #   -r requirements.txt
+    #   importlab
+ninja==1.10.0.post2
+    # via
+    #   -r requirements.txt
+    #   pytype
 packaging==20.9
     # via
     #   -r requirements.txt
@@ -129,6 +156,8 @@ packaging==20.9
     #   pytest
 parso==0.8.2
     # via jedi
+pathspec==0.8.1
+    # via black
 pendulum==2.1.2
     # via pgcli
 pexpect==4.8.0
@@ -190,12 +219,20 @@ python-dateutil==2.8.1
     # via
     #   faker
     #   pendulum
+pytype==2021.6.17
+    # via -r requirements.txt
 pytz==2021.1
     # via
     #   -r requirements.txt
     #   django
 pytzdata==2020.1
     # via pendulum
+pyyaml==5.4.1
+    # via
+    #   -r requirements.txt
+    #   pytype
+regex==2021.4.4
+    # via black
 rx==1.6.1
     # via
     #   -r requirements.txt
@@ -218,6 +255,7 @@ six==1.15.0
     #   graphql-relay
     #   promise
     #   python-dateutil
+    #   pytype
     #   singledispatch
     #   transitions
 slackclient==2.9.3
@@ -238,11 +276,19 @@ text-unidecode==1.3
     #   faker
     #   graphene-django
 toml==0.10.2
-    # via pytest
+    # via
+    #   -r requirements.txt
+    #   black
+    #   pytest
+    #   pytype
 traitlets==5.0.5
     # via ipython
 transitions==0.8.8
     # via -r requirements.txt
+typed-ast==1.4.3
+    # via
+    #   -r requirements.txt
+    #   pytype
 typing-extensions==3.10.0.0
     # via
     #   -r requirements.txt
@@ -253,6 +299,8 @@ unidecode==1.2.0
     #   django-todo
 urwid==2.1.2
     # via pudb
+watchdog==2.1.2
+    # via -r requirements.txt
 wcwidth==0.2.5
     # via prompt-toolkit
 webencodings==0.5.1

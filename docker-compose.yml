@@ -6,15 +6,25 @@ services:
             context: ./backend
             dockerfile: Dockerfile
         depends_on: []
-        image: faid_backend
+        image: taskboard_backend
         ports:
         - 8000:8000
         volumes: []
-    db:
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        depends_on: []
+        image: taskboard_frontend
+        ports:
+        - 3000:3000
+        volumes: []
+    postgres:
+        depends_on: []
         env_file:
         - ./env/postgres.env
         image: postgres:11.5
         ports:
         - 5432:5432
-        volumes:
-        - postgres_data:/var/lib/postgresql/data
+        volumes: []
+volumes: {}

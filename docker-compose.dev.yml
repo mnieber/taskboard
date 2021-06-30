@@ -6,11 +6,11 @@ services:
       context: ./backend
       dockerfile: Dockerfile.dev
     command: sleep infinity
-    depends_on: ["db"]
+    depends_on: ["postgres"]
     env_file:
       - ./env/django.env
       - ./env/postgres.env
-    image: faid_backend_dev
+    image: taskboard_backend_dev
     ports:
       - 8000:8000
     volumes:
@@ -20,9 +20,26 @@ services:
       - /opt/taskboard/backend/pytest_report.html:/app/pytest_report.html
       - /opt/taskboard/backend/assets:/app/assets
       - /opt/taskboard/backend/ipython:/root/.ipython
-      - backend_site_packages:/usr/local/lib/python3.9/site-packages
-      - backend_usr_local_bin:/usr/local/bin
-  db:
+      - backend_venv:/app/env
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    command: sleep infinity
+    depends_on: []
+    image: taskboard_frontend_dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app/src
+      - /opt/taskboard/frontend/fish_history:/root/.local/share/fish/fish_history
+      - /home/maarten/projects/aspiration/src:/npm/aspiration
+      - /home/maarten/projects/react-form-state-context/src:/npm/react-form-state-context
+      - /home/maarten/projects/react-default-props-context/src:/npm/react-default-props-context
+      - /home/maarten/projects/skandha/src:/npm/skandha
+      - /home/maarten/projects/skandha-facets/src:/npm/skandha-facets
+      - /home/maarten/projects/skandha-mobx/src:/npm/skandha-mobx
+  postgres:
     env_file:
       - ./env/postgres.env
     image: postgres:11.5
@@ -31,6 +48,5 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 volumes:
-  backend_site_packages: {}
-  backend_usr_local_bin: {}
+  backend_venv: {}
   postgres_data: {}

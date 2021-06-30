@@ -14,4 +14,8 @@ RUN pip install \
     isort               ` # via :isort` \
     pip-tools           ` # via :pip-compile`
 
+# create a python venv that we can easily store inside a docker volume
+RUN python3 -m venv /app/env
+ENV PATH="/app/env/bin:${PATH}"
+
 WORKDIR /app/src

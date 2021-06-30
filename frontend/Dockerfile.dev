@@ -1,0 +1,13 @@
+FROM node:14-alpine
+
+ENV CHOKIDAR_USEPOLLING=true
+
+# install dev pkg dependencies
+RUN apk update && apk add \
+    fish                ` # via :fish` \
+    nano \
+    curl \
+    make \
+    mlocate
+
+WORKDIR /app/src

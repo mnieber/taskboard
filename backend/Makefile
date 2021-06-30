@@ -7,3 +7,7 @@ pip-compile:
 
 install:
 	pip install -r requirements.dev.txt
+
+typecheck:
+	watchmedo shell-command --command="flock -n test.lock pytype -d import-error" --patterns="*.py" --recursive .
+

@@ -6,3 +6,5 @@ ipython
 pudb
 pytest
 pytest-html
+isort
+black

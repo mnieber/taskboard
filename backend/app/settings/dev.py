@@ -26,7 +26,7 @@ try:
 except ImportError:
     pass
 
-DATABASES["default"]["HOST"] = "db"
+DATABASES["default"]["HOST"] = "postgres"
 
 CACHES["default"] = {
     "BACKEND": "django.core.cache.backends.locmem.LocMemCache",

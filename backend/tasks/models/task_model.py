@@ -62,7 +62,7 @@ class Task(todo.abstract_models.AbstractTask):
             for trigger in state_machine.get_triggers(state_name)
         ]
 
-    def transition(self, trigger, *args, **kwargs):
+    def transition(self, trigger: str, *args, **kwargs):
         state_machine = build_state_machine(
             _state_machine_name(self), _state_name(self)
         )
