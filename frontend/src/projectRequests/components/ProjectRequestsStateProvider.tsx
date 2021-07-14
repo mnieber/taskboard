@@ -9,30 +9,30 @@ import {
   useDefaultProps,
 } from 'react-default-props-context';
 import { useStore } from 'src/app/components';
-import { TasksState } from 'src/tasks/TasksState';
+import { ProjectRequestsState } from 'src/projectRequests/ProjectRequestsState';
 
 type PropsT = React.PropsWithChildren<{}>;
 
 type DefaultPropsT = {};
 
-export const TasksStateProvider: FC<PropsT, DefaultPropsT> = observer(
+export const ProjectRequestsStateProvider: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
-    const { tasksStore } = useStore();
+    const { projectRequestsStore } = useStore();
 
     const createState = () => {
-      return new TasksState({
-        tasksStore,
+      return new ProjectRequestsState({
+        projectRequestsStore,
       });
     };
 
-    const updateState = (state: TasksState) => {
+    const updateState = (state: ProjectRequestsState) => {
       const cleanUpFunction = reaction(
         () => ({
-          tasks: values(tasksStore.taskById),
+          projectRequests: values(projectRequestsStore.projectRequestById),
         }),
         (inputs) => {
-          state.inputs.tasks = inputs.tasks;
+          state.inputs.projectRequests = inputs.projectRequests;
         },
         {
           fireImmediately: true,
@@ -41,10 +41,10 @@ export const TasksStateProvider: FC<PropsT, DefaultPropsT> = observer(
       addCleanUpFunctionToCtr(state, cleanUpFunction);
     };
 
-    const getDefaultProps = (state: TasksState) => {
+    const getDefaultProps = (state: ProjectRequestsState) => {
       return {
-        tasksState: () => state,
-        tasks: () => state.outputs.tasksDisplay,
+        projectRequestsState: () => state,
+        projectRequests: () => state.outputs.projectRequestsDisplay,
       };
     };
 
@@ -52,7 +52,7 @@ export const TasksStateProvider: FC<PropsT, DefaultPropsT> = observer(
       <CtrProvider
         createCtr={createState}
         updateCtr={updateState}
-        destroyCtr={(state: TasksState) => state.destroy()}
+        destroyCtr={(state: ProjectRequestsState) => state.destroy()}
         getDefaultProps={getDefaultProps}
       >
         {props.children}

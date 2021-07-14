@@ -3,12 +3,11 @@ import { rsMap } from 'src/api/ResourceStateMap';
 import { isErroredRS, isResetRS, isUpdatingRS, LoadingT } from 'src/utils/RST';
 
 type PropsT = {
-  resourceUrl: string;
-  renderUpdating?: (updating_state: LoadingT) => JSX.Element;
+  resUrl: string;
+  renderUpdating?: (updatingState: LoadingT) => JSX.Element;
   renderErrored?: (message: string) => JSX.Element;
 };
 
-// TODO better default renders
 const defaultRenderErrored = (message: string) => {
   return <div>Error{message !== undefined && `: ${message}`}</div>;
 };
@@ -23,11 +22,11 @@ export const getResourceView = (props: PropsT) => {
     return <React.Fragment />;
   };
 
-  const rs = rsMap.getState(props.resourceUrl);
+  const rs = rsMap.getState(props.resUrl);
   return isErroredRS(rs)
     ? renderErrored(rs.message)
     : isUpdatingRS(rs)
-    ? renderUpdating(rs.updating_state)
+    ? renderUpdating(rs.updatingState)
     : isResetRS(rs)
     ? renderReset()
     : undefined;

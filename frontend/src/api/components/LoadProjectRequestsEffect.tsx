@@ -4,12 +4,12 @@ import { EffectWithoutArgs } from 'src/utils/components';
 
 type PropsT = {};
 
-export const LoadTasksEffect: React.FC<PropsT> = (p: PropsT) => {
+export const LoadProjectRequestsEffect: React.FC<PropsT> = (p: PropsT) => {
   const { api } = useStore();
   return (
     <EffectWithoutArgs
       f={() => {
-        api.getTasks();
+        api.getProjectRequests();
       }}
     />
   );

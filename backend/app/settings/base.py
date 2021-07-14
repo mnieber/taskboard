@@ -38,18 +38,6 @@ GRAPHENE = {
     ],
 }
 
-DJANGO_TODO_ID_FORMAT = "str"
-DJANGO_TODO_LIST_PATH_PREFIX = "list/"
-DJANGO_TODO_MODELS = {
-    "TaskList": ("tasks.TaskList", "tasks.models"),
-    "Task": ("tasks.Task", "tasks.models"),
-    "Attachment": (
-        "tasks.Attachment",
-        "tasks.models",
-    ),
-    "Comment": ("tasks.Comment", "tasks.models"),
-}
-
 SLACK_API_TOKEN = env("SLACK_API_TOKEN", default=None)
 SLACK_CHANNEL_FOR_TASK_UPDATES = "#task-updates"
 

@@ -1,11 +1,8 @@
-import django.utils.timezone
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import View
-
-from .utils import log_task_msg
 
 
 class ActionView(LoginRequiredMixin, View):
@@ -17,19 +14,7 @@ class ActionView(LoginRequiredMixin, View):
             for field, field_errors in errors.items():
                 messages.error(self.request, "%s: %s" % (field, field_errors[0]))
         else:
-            log_msg = self.transition(data)
-            if log_msg:
-                now = django.utils.timezone.now()
-                log_task_msg(
-                    self.task,
-                    "%s by %s on %s at %s."
-                    % (
-                        log_msg,
-                        self.request.user.username,
-                        now.strftime("%m/%d/%Y"),
-                        now.strftime("%H:%M:%S"),
-                    ),
-                )
+            self.transition(data)
 
         return HttpResponseRedirect(reverse("todo:task_detail", args=(self.task.id,)))
 

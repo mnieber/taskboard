@@ -15,16 +15,13 @@ THIRD_PARTY_APPS = [
     "graphene_django",
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
     "graphql_auth",
-    "todo",
-    "dal",  # needed for todo
-    "dal_select2",  # needed for todo
 ]
 
 LOCAL_APPS = [
     "app.apps.MainAppConfig",
     "users.apps.UsersConfig",
-    "project_requests.apps.ProjectRequestsConfig",
     "tasks.apps.TasksConfig",
+    "project_requests.apps.ProjectRequestsConfig",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

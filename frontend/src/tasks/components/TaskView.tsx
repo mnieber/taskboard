@@ -13,7 +13,7 @@ type DefaultPropsT = {
 export const TaskView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
   const props = useDefaultProps<PropsT, DefaultPropsT>(p);
 
-  const resourceView = getResourceView({ resourceUrl: props.taskResUrl });
+  const resourceView = getResourceView({ resUrl: props.taskResUrl });
   if (resourceView) return resourceView;
 
   return (

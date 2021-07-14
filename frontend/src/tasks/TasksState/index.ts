@@ -1,14 +1,10 @@
-import { makeObservable } from 'mobx';
-import { cleanUpCtr } from 'react-default-props-context';
 import {
-  ClassMemberT as CMT,
-  facet,
-  getm,
-  installPolicies,
-  mapDataToFacet,
-  registerFacets,
-} from 'skandha';
-import { makeCtrObservable } from 'skandha-mobx';
+  addCleanUpFunctionToCtr,
+  cleanUpCtr,
+} from 'react-default-props-context';
+import * as Skandha from 'skandha';
+import { ClassMemberT as CMT, facet, getm } from 'skandha';
+import { registerCtr } from 'skandha-mobx';
 import { Inputs } from 'src/tasks/TasksState/facets/Inputs';
 import { Outputs } from 'src/tasks/TasksState/facets/Outputs';
 import { TasksStore } from 'src/tasks/TasksStore';
@@ -28,22 +24,31 @@ export class TasksState {
     const Inputs_items = [Inputs, 'tasks', this] as CMT;
     const Outputs_display = [Outputs, 'tasksDisplay', this] as CMT;
 
-    const policies = [mapDataToFacet(Outputs_display, getm(Inputs_items))];
+    const policies = [
+      Skandha.mapDataToFacet(Outputs_display, getm(Inputs_items)),
+    ];
 
-    installPolicies(policies, this.tasks);
+    Skandha.installPolicies(policies, this.tasks);
   }
 
   destroy() {
-    cleanUpCtr(this.tasks);
+    cleanUpCtr(this);
   }
 
   constructor(props: PropsT) {
-    registerFacets(this, {});
-    makeObservable(this);
-
-    registerFacets(this.tasks, { name: 'Tasks' });
-    this._setTasksCallbacks(props);
-    this._applyTasksPolicies(props);
-    makeCtrObservable(this.tasks);
+    registerCtr({
+      ctr: this,
+      childCtrs: [
+        {
+          ctr: this.tasks,
+          details: { name: 'Tasks' },
+          initCtr: () => {
+            this._setTasksCallbacks(props);
+            this._applyTasksPolicies(props);
+            addCleanUpFunctionToCtr(this, () => cleanUpCtr(this.tasks));
+          },
+        },
+      ],
+    });
   }
 }

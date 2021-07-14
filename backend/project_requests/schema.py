@@ -4,7 +4,6 @@ from graphene_django.types import DjangoObjectType
 
 from project_requests.models import ProjectRequest
 from project_requests.utils import create_project_request
-from tasks.utils import log_task_msg
 
 
 class ProjectRequestType(DjangoObjectType):
@@ -42,10 +41,6 @@ class CreateProjectRequest(graphene.Mutation):
         kwargs = kwargs["input"]
         project_request = create_project_request(**kwargs)
         project_request.task.transition("receive", {})
-        log_task_msg(
-            project_request.task,
-            "New project request received: %s" % project_request.project_name,
-        )
 
         return CreateProjectRequest(project_request=project_request, success=True)
 

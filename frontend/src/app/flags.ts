@@ -1,3 +1,1 @@
-export const flags = {
-  useMockServer: false,
-};
+export const flags = {};
