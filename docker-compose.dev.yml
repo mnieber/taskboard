@@ -6,19 +6,22 @@ services:
       context: ./backend
       dockerfile: Dockerfile.dev
     command: sleep infinity
-    depends_on: ["postgres"]
+    depends_on:
+    - postgres
     env_file:
-      - ./env/django.env
-      - ./env/postgres.env
+    - ./env/postgres.env
+    environment:
+    - DJANGO_SETTINGS_MODULE=app.settings.dev
     image: taskboard_backend_dev
     ports:
       - 8000:8000
     volumes:
       - ./backend:/app/src
-      - $HOME/.config/pudb:/root/.config/pudb
       - /opt/taskboard/backend/fish_history:/root/.local/share/fish/fish_history
+      - /opt/taskboard/backend/static:/app/static
       - /opt/taskboard/backend/pytest_report.html:/app/pytest_report.html
       - /opt/taskboard/backend/assets:/app/assets
+      - $HOME/.config/pudb:/root/.config/pudb
       - /opt/taskboard/backend/ipython:/root/.ipython
       - backend_venv:/app/env
   frontend:
@@ -27,19 +30,16 @@ services:
       dockerfile: Dockerfile.dev
     command: sleep infinity
     depends_on: []
+    environment:
+    - CHOKIDAR_USEPOLLING=true
     image: taskboard_frontend_dev
     ports:
       - 3000:3000
     volumes:
       - ./frontend:/app/src
       - /opt/taskboard/frontend/fish_history:/root/.local/share/fish/fish_history
-      - /home/maarten/projects/aspiration/src:/npm/aspiration
-      - /home/maarten/projects/react-form-state-context/src:/npm/react-form-state-context
-      - /home/maarten/projects/react-default-props-context/src:/npm/react-default-props-context
-      - /home/maarten/projects/skandha/src:/npm/skandha
-      - /home/maarten/projects/skandha-facets/src:/npm/skandha-facets
-      - /home/maarten/projects/skandha-mobx/src:/npm/skandha-mobx
   postgres:
+    depends_on: []
     env_file:
       - ./env/postgres.env
     image: postgres:11.5
