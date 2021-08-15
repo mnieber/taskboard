@@ -1,7 +1,6 @@
 -r requirements.txt
 django-extensions
 faker
-django-pgcli
 ipython
 pudb
 pytest

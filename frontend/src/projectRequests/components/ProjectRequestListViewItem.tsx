@@ -7,7 +7,7 @@ import './ProjectRequestListViewItem.scss';
 export type PropsT = {
   projectRequest: ProjectRequestT;
   className?: any;
-  onMouseDown?: any;
+  onClick?: any;
 };
 
 export const ProjectRequestListViewItem: React.FC<PropsT> = observer(
@@ -18,9 +18,9 @@ export const ProjectRequestListViewItem: React.FC<PropsT> = observer(
           'ProjectRequestListViewItem flex flex-row flex-1 mb-2',
           props.className
         )}
-        onMouseDown={props.onMouseDown}
+        onClick={props.onClick}
       >
-        {props.projectRequest.name}
+        {props.projectRequest.id}
       </div>
     );
   }

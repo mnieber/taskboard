@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { always, map, pipe } from 'ramda';
 import { FC, useDefaultProps } from 'react-default-props-context';
+import { useHistory } from 'react-router-dom';
 import { ProjectRequestListViewItem } from 'src/projectRequests/components';
 import { ProjectRequestT } from 'src/projectRequests/types';
 import { getResourceView } from 'src/utils/components';
@@ -19,6 +20,7 @@ type DefaultPropsT = {
 export const ProjectRequestListView: FC<PropsT, DefaultPropsT> = observer(
   (p: PropsT) => {
     const props = useDefaultProps<PropsT, DefaultPropsT>(p);
+    const history = useHistory();
 
     const resourceView = getResourceView({
       resUrl: props.projectRequestsResUrl,
@@ -28,7 +30,11 @@ export const ProjectRequestListView: FC<PropsT, DefaultPropsT> = observer(
     const projectRequestDivs = pipe(
       always(props.projectRequests),
       map((x: ProjectRequestT) => (
-        <ProjectRequestListViewItem key={x.id} projectRequest={x} />
+        <ProjectRequestListViewItem
+          key={x.id}
+          projectRequest={x}
+          onClick={() => history.push(`/projectRequests/${x.id}`)}
+        />
       ))
     )();
 

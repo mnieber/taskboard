@@ -2,14 +2,10 @@ import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { values } from 'ramda';
 import * as React from 'react';
-import {
-  addCleanUpFunctionToCtr,
-  CtrProvider,
-  FC,
-  useDefaultProps,
-} from 'react-default-props-context';
+import { CtrProvider, FC, useDefaultProps } from 'react-default-props-context';
 import { useStore } from 'src/app/components';
 import { TasksState } from 'src/tasks/TasksState';
+import { resUrls } from 'src/tasks/TasksStore';
 
 type PropsT = React.PropsWithChildren<{}>;
 
@@ -27,7 +23,7 @@ export const TasksStateProvider: FC<PropsT, DefaultPropsT> = observer(
     };
 
     const updateState = (state: TasksState) => {
-      const cleanUpFunction = reaction(
+      return reaction(
         () => ({
           tasks: values(tasksStore.taskById),
         }),
@@ -38,13 +34,13 @@ export const TasksStateProvider: FC<PropsT, DefaultPropsT> = observer(
           fireImmediately: true,
         }
       );
-      addCleanUpFunctionToCtr(state, cleanUpFunction);
     };
 
     const getDefaultProps = (state: TasksState) => {
       return {
         tasksState: () => state,
         tasks: () => state.outputs.tasksDisplay,
+        tasksResUrl: () => resUrls.taskById,
       };
     };
 

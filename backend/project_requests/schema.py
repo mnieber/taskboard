@@ -9,40 +9,61 @@ from project_requests.utils import create_project_request
 class ProjectRequestType(DjangoObjectType):
     class Meta:
         model = ProjectRequest
+        exclude = ["task"]
 
 
-class ProjectRequestsQuery(object):
+class ProjectRequestsQuery:
     project_requests = graphene.List(ProjectRequestType)
 
     def resolve_project_requests(self, info, **kwargs):
         return ProjectRequest.objects.all()
 
 
-# Mutation
-class CreateProjectRequestInput(graphene.InputObjectType):
-    location = graphene.String(required=True)
-    description = graphene.String(required=False)
-    changemaker_name = graphene.String(required=True)
-    date_of_birth = Date(required=True)
-    project_name = graphene.String(required=True)
-    email = graphene.String(required=True)
-    google_doc_url = graphene.String(required=False)
-    description_url = graphene.String(required=False)
+class RejectProjectRequestFormType(graphene.InputObjectType):
+    project_request_id = graphene.String()
+    send_email = graphene.Boolean()
+    email_to = graphene.String()
+    email_body = graphene.String()
 
 
-class CreateProjectRequest(graphene.Mutation):
+class RejectProjectRequest(graphene.Mutation):
     class Arguments:
-        input = CreateProjectRequestInput()
+        form = graphene.Argument(RejectProjectRequestFormType)
 
     success = graphene.Boolean()
-    project_request = graphene.Field(ProjectRequestType)
 
-    def mutate(self, info, **kwargs):
-        kwargs = kwargs["input"]
-        project_request = create_project_request(**kwargs)
-        project_request.task.transition("receive", {})
+    @staticmethod
+    def mutate(parent, info, form):
+        actions.reject_project_request(form)
+        return dict(success=True)
 
-        return CreateProjectRequest(project_request=project_request, success=True)
+
+class ApproveProjectRequestFormType(graphene.InputObjectType):
+    project_request_id = graphene.String()
+
+
+class ApproveProjectRequest(graphene.Mutation):
+    class Arguments:
+        form = graphene.Argument(ApproveProjectRequestFormType)
+
+    success = graphene.Boolean()
+
+    @staticmethod
+    def mutate(parent, info, form):
+        actions.approve_project_request(form)
+        return dict(success=True)
+
+
+class PostProjectRequest(graphene.Mutation):
+    class Arguments:
+        form = graphene.Argument(ProjectRequestType)
+
+    success = graphene.Boolean()
+
+    @staticmethod
+    def mutate(parent, info, form):
+	actions.create_project_request(form)
+        return dict(success=True)
 
 
 class Query(ProjectRequestsQuery, graphene.ObjectType):
@@ -50,4 +71,6 @@ class Query(ProjectRequestsQuery, graphene.ObjectType):
 
 
 class Mutation(graphene.ObjectType):
-    create_project_request = CreateProjectRequest.Field()
+    post_reject_project_request_form = PostRejectProjectRequestForm.Field()
+    post_approve_project_request_form = PostApproveProjectRequestForm.Field()
+    post_project_request = PostProjectRequest.Field()

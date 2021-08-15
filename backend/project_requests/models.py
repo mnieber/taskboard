@@ -20,7 +20,7 @@ class ProjectRequest(Entity):
     changemaker_name = models.CharField(_("Name of the changemaker"), max_length=255)
     location = models.TextField(_("Location of the project"))
     date_of_birth = models.DateField(_("Birth date of the changemaker"))
-    project_name = models.CharField(_("Name of the project"), max_length=255)
+    project_name = models.CharField(max_length=255)
     slug = models.SlugField(_("Slug"), unique=True, max_length=255, db_index=True)
     description = models.TextField(
         _("Description of project, or a link to a video"), null=True, blank=True

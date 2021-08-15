@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y \
     fish                ` # via fish` \
     make                ` # via makefile` \
     nano                ` # via dockerfile` \
-    postgresql-client   ` # via django`
+    postgresql-client   ` # via django` \
+    psycopg2-binary     ` # via django`
 
 # install dev pip dependencies
 RUN pip3 install \

@@ -13,15 +13,16 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "django_extensions",
     "graphene_django",
-    "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
     "graphql_auth",
+    "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
 ]
 
 LOCAL_APPS = [
-    "app.apps.MainAppConfig",
-    "users.apps.UsersConfig",
-    "tasks.apps.TasksConfig",
+    "api.apps.ApiConfig",
+    "app.apps.AppConfig",
     "project_requests.apps.ProjectRequestsConfig",
+    "tasks.apps.TasksConfig",
+    "users.apps.UsersConfig",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

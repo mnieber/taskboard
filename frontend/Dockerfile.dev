@@ -4,7 +4,7 @@ FROM node:14-alpine
 RUN apk update && apk add \
     curl                ` # via dockerfile` \
     fish                ` # via fish` \
-    make                ` # via dockerfile` \
+    make                ` # via makefile` \
     mlocate             ` # via dockerfile` \
     nano                ` # via dockerfile`
 

@@ -32,7 +32,7 @@ CACHES = {
 }
 
 GRAPHENE = {
-    "SCHEMA": "app.schema.schema",
+    "SCHEMA": "api.schema.schema",
     "MIDDLEWARE": [
         "graphql_jwt.middleware.JSONWebTokenMiddleware",
     ],

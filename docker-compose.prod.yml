@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile.prod
     depends_on:
     - postgres
+    env_file:
+    - ./env/postgres.env
     environment:
     - DJANGO_SETTINGS_MODULE=app.settings.prod
     image: taskboard_backend

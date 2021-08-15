@@ -21,7 +21,7 @@ export const ProjectRequestView: FC<PropsT, DefaultPropsT> = observer(
 
     return (
       <div className="ProjectRequestView flex flex-col w-full">
-        To do: show projectRequest with name {props.projectRequest.name}
+        To do: show projectRequest with id {props.projectRequest.id}
       </div>
     );
   }

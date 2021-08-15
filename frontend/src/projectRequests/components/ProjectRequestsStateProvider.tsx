@@ -2,14 +2,10 @@ import { reaction } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { values } from 'ramda';
 import * as React from 'react';
-import {
-  addCleanUpFunctionToCtr,
-  CtrProvider,
-  FC,
-  useDefaultProps,
-} from 'react-default-props-context';
+import { CtrProvider, FC, useDefaultProps } from 'react-default-props-context';
 import { useStore } from 'src/app/components';
 import { ProjectRequestsState } from 'src/projectRequests/ProjectRequestsState';
+import { resUrls } from 'src/projectRequests/ProjectRequestsStore';
 
 type PropsT = React.PropsWithChildren<{}>;
 
@@ -27,7 +23,7 @@ export const ProjectRequestsStateProvider: FC<PropsT, DefaultPropsT> = observer(
     };
 
     const updateState = (state: ProjectRequestsState) => {
-      const cleanUpFunction = reaction(
+      return reaction(
         () => ({
           projectRequests: values(projectRequestsStore.projectRequestById),
         }),
@@ -38,13 +34,16 @@ export const ProjectRequestsStateProvider: FC<PropsT, DefaultPropsT> = observer(
           fireImmediately: true,
         }
       );
-      addCleanUpFunctionToCtr(state, cleanUpFunction);
     };
 
     const getDefaultProps = (state: ProjectRequestsState) => {
       return {
         projectRequestsState: () => state,
         projectRequests: () => state.outputs.projectRequestsDisplay,
+        projectRequestsResUrl: () => resUrls.projectRequestById,
+        projectRequestsSelection: () => state.projectRequests.selection,
+        projectRequestsHighlight: () => state.projectRequests.highlight,
+        projectRequest: () => state.projectRequests.highlight.item,
       };
     };
 

@@ -3,10 +3,11 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import { LoadProjectRequestsEffect } from 'src/api/components';
+import { AuthSwitch } from 'src/auth/components';
 import {
   ProjectRequestListView,
+  ProjectRequestManageView,
   ProjectRequestsStateProvider,
-  ProjectRequestView,
   SelectProjectRequestEffect,
 } from 'src/projectRequests/components';
 
@@ -17,20 +18,21 @@ export const history = createBrowserHistory();
 export const UrlRouter: React.FC<PropsT> = observer((props: PropsT) => {
   return (
     <Router history={history}>
-      <Switch>
-        <Route path="/projectRequests/">
-          <ProjectRequestsStateProvider>
+      <AuthSwitch />
+      <Route path="/projectRequests/">
+        <ProjectRequestsStateProvider>
+          <Switch>
             <Route path="/projectRequests/list">
               <LoadProjectRequestsEffect />
               <ProjectRequestListView />
             </Route>
-            <Route path="/projectRequests/:projectRequestId">
+            <Route path="/projectRequests/:projectSlug">
               <SelectProjectRequestEffect />
-              <ProjectRequestView />
+              <ProjectRequestManageView />
             </Route>
-          </ProjectRequestsStateProvider>
-        </Route>
-      </Switch>
+          </Switch>
+        </ProjectRequestsStateProvider>
+      </Route>
     </Router>
   );
 });

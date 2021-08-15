@@ -32,7 +32,7 @@ LOGGING = {
     },
     "formatters": {
         "simple": {
-            "format": "%(asctime)s api linsci: %(message)s",
+            "format": "%(asctime)s api: %(message)s",
             "datefmt": "%Y-%m-%dT%H:%M:%S",
         },
     },

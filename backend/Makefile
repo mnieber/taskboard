@@ -6,6 +6,9 @@ create-db:
 	env PGPASSWORD=dev psql -h postgres -d postgres -U django -c "CREATE DATABASE django;"
 	env PGPASSWORD=dev psql -h postgres -d postgres -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE django TO django;"
 
+pgcli:
+	pgcli `./manage.py sqldsn --quiet --style=uri`
+
 pip-compile:
 	pip-compile requirements.in -o requirements.txt
 	pip-compile requirements.dev.in -o requirements.dev.txt

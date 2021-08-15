@@ -18,7 +18,7 @@ export const TaskView: FC<PropsT, DefaultPropsT> = observer((p: PropsT) => {
 
   return (
     <div className="TaskView flex flex-col w-full">
-      To do: show task with name {props.task.name}
+      To do: show task with id {props.task.id}
     </div>
   );
 });
