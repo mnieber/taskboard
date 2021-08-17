@@ -1,8 +1,8 @@
+Django
 django-cors-headers
 django-environ
-Django
-git+git://github.com/mnieber/django-graphql-auth@feature/return-activation-token#egg=django-graphql-auth
-graphene-django     
+graphene-django
 psycopg2
 slackclient
 transitions
+django-graphql-jwt

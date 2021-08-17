@@ -35,7 +35,7 @@ class RejectProjectRequest(graphene.Mutation):
     @staticmethod
     def mutate(parent, info, form):
         actions.reject_project_request(form)
-        return dict(success=True)
+        return RejectProjectRequest(success=True)
 
 
 class ApproveProjectRequestFormType(graphene.InputObjectType):
@@ -51,7 +51,7 @@ class ApproveProjectRequest(graphene.Mutation):
     @staticmethod
     def mutate(parent, info, form):
         actions.approve_project_request(form)
-        return dict(success=True)
+        return ApproveProjectRequest(success=True)
 
 
 class PostProjectRequest(graphene.Mutation):
@@ -62,8 +62,8 @@ class PostProjectRequest(graphene.Mutation):
 
     @staticmethod
     def mutate(parent, info, form):
-	actions.create_project_request(form)
-        return dict(success=True)
+        actions.create_project_request(form)
+        return PostProjectRequest(success=True)
 
 
 class Query(ProjectRequestsQuery, graphene.ObjectType):
@@ -71,6 +71,6 @@ class Query(ProjectRequestsQuery, graphene.ObjectType):
 
 
 class Mutation(graphene.ObjectType):
-    post_reject_project_request_form = PostRejectProjectRequestForm.Field()
-    post_approve_project_request_form = PostApproveProjectRequestForm.Field()
+    reject_project_request = RejectProjectRequest.Field()
+    approve_project_request = ApproveProjectRequest.Field()
     post_project_request = PostProjectRequest.Field()

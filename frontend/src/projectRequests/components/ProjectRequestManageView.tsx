@@ -3,8 +3,9 @@ import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { FC, useDefaultProps } from 'react-default-props-context';
 import {
-  ProjectRequestManageViewBottomPanel,
+  ApproveProjectRequestFormView,
   ProjectRequestView,
+  RejectProjectRequestFormView,
 } from 'src/projectRequests/components';
 import './ProjectRequestManageView.scss';
 
@@ -29,7 +30,8 @@ export const ProjectRequestManageView: FC<PropsT, DefaultPropsT> = observer(
           <ProjectRequestView />
         </div>
         <div className="ProjectRequestManageView__bottomPanel">
-          <ProjectRequestManageViewBottomPanel />
+          <RejectProjectRequestFormView />
+          <ApproveProjectRequestFormView />
         </div>
       </div>
     );

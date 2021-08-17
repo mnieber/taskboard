@@ -20,32 +20,24 @@ django==3.2
     # via
     #   -r requirements.in
     #   django-cors-headers
-    #   django-filter
-    #   django-graphql-auth
     #   django-graphql-jwt
     #   graphene-django
 django-cors-headers==3.7.0
     # via -r requirements.in
 django-environ==0.4.5
     # via -r requirements.in
-django-filter==2.4.0
-    # via django-graphql-auth
-git+git://github.com/mnieber/django-graphql-auth@feature/return-activation-token#egg=django-graphql-auth
+django-graphql-jwt==0.3.4
     # via -r requirements.in
-django-graphql-jwt==0.3.0
-    # via django-graphql-auth
 graphene==2.1.8
     # via
-    #   django-graphql-auth
+    #   django-graphql-jwt
     #   graphene-django
 graphene-django==2.15.0
     # via
     #   -r requirements.in
-    #   django-graphql-auth
     #   django-graphql-jwt
 graphql-core==2.3.2
     # via
-    #   django-graphql-jwt
     #   graphene
     #   graphene-django
     #   graphql-relay
@@ -64,10 +56,8 @@ promise==2.3
     #   graphql-relay
 psycopg2==2.8.6
     # via -r requirements.in
-pyjwt==1.7.1
-    # via
-    #   django-graphql-auth
-    #   django-graphql-jwt
+pyjwt==2.1.0
+    # via django-graphql-jwt
 pytz==2021.1
     # via django
 rx==1.6.1

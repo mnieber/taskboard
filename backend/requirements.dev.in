@@ -4,4 +4,5 @@ faker
 ipython
 pudb
 pytest
+pytest-django
 pytest-html

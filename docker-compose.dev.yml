@@ -14,16 +14,16 @@ services:
     - DJANGO_SETTINGS_MODULE=app.settings.dev
     image: taskboard_backend_dev
     ports:
-      - 8000:8000
+    - 8000:8000
     volumes:
-      - ./backend:/app/src
-      - /opt/taskboard/backend/fish_history:/root/.local/share/fish/fish_history
-      - /opt/taskboard/backend/static:/app/static
-      - /opt/taskboard/backend/pytest_report.html:/app/pytest_report.html
-      - /opt/taskboard/backend/assets:/app/assets
-      - $HOME/.config/pudb:/root/.config/pudb
-      - /opt/taskboard/backend/ipython:/root/.ipython
-      - backend_venv:/app/env
+    - ./backend:/app/src
+    - /opt/taskboard/backend/fish_history:/root/.local/share/fish/fish_history
+    - /opt/taskboard/backend/static:/app/static
+    - /opt/taskboard/backend/pytest_report.html:/app/pytest_report.html
+    - /opt/taskboard/backend/assets:/app/assets
+    - $HOME/.config/pudb:/root/.config/pudb
+    - /opt/taskboard/backend/ipython:/root/.ipython
+    - backend_venv:/app/env
   frontend:
     build:
       context: ./frontend
@@ -34,19 +34,19 @@ services:
     - CHOKIDAR_USEPOLLING=true
     image: taskboard_frontend_dev
     ports:
-      - 3000:3000
+    - 3000:3000
     volumes:
-      - ./frontend:/app/src
-      - /opt/taskboard/frontend/fish_history:/root/.local/share/fish/fish_history
+    - ./frontend:/app/src
+    - /opt/taskboard/frontend/fish_history:/root/.local/share/fish/fish_history
   postgres:
     depends_on: []
     env_file:
-      - ./env/postgres.env
+    - ./env/postgres.env
     image: postgres:11.5
     ports:
-      - 5432:5432
+    - 5432:5432
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+    - postgres_data:/var/lib/postgresql/data
 volumes:
   backend_venv: {}
   postgres_data: {}

@@ -15,33 +15,33 @@ import './ApproveProjectRequestFormView.scss';
 type PropsT = {};
 
 export const ApproveProjectRequestFormView: React.FC<PropsT> = observer(() => {
-    const { projectRequestsStore } = useStore();
+  const { projectRequestsStore } = useStore();
 
-    const initialValues = {
-      projectRequestId: null,
-    };
-    const initialErrors = {};
-    const handleValidate = ({ values, setError }: HandleValidateArgsT) => {};
-    const handleSubmit = ({ values }: HandleSubmitArgsT) => {
+  const initialValues = {
+    projectRequestId: null,
+  };
+  const initialErrors = {};
+  const handleValidate = ({ values, setError }: HandleValidateArgsT) => {};
+  const handleSubmit = ({ values }: HandleSubmitArgsT) => {
     projectRequestsStore.saveApproveProjectRequestForm(values);
-    };
+  };
 
-    const formDiv = (
-      <div className="ApproveProjectRequestFormView flex flex-col w-full">
-        <FormStateProvider
-          initialValues={initialValues}
-          initialErrors={initialErrors}
-          handleValidate={handleValidate}
-          handleSubmit={handleSubmit}
-        >
-          <GlobalError />
-          <Field fieldName="name" label="Name">
-            <TextField />
-          </Field>
-          <SaveButton label="Save" disabled={false} />
-        </FormStateProvider>
-      </div>
-    );
+  const formDiv = (
+    <div className="ApproveProjectRequestFormView flex flex-col w-full">
+      <FormStateProvider
+        initialValues={initialValues}
+        initialErrors={initialErrors}
+        handleValidate={handleValidate}
+        handleSubmit={handleSubmit}
+      >
+        <GlobalError />
+        <Field fieldName="name" label="Name">
+          <TextField />
+        </Field>
+        <SaveButton label="Save" disabled={false} />
+      </FormStateProvider>
+    </div>
+  );
 
-    return formDiv;
+  return formDiv;
 });

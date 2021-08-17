@@ -17,16 +17,14 @@ class ProjectRequest(Entity):
             ("can_approve_project_requests", "Can approve project requests"),
         )
 
-    changemaker_name = models.CharField(_("Name of the changemaker"), max_length=255)
-    location = models.TextField(_("Location of the project"))
-    date_of_birth = models.DateField(_("Birth date of the changemaker"))
+    changemaker_name = models.CharField(max_length=255)
+    date_of_birth = models.DateField()
+    description = models.TextField()
+    email = models.EmailField()
+    location = models.CharField(max_length=255)
     project_name = models.CharField(max_length=255)
-    slug = models.SlugField(_("Slug"), unique=True, max_length=255, db_index=True)
-    description = models.TextField(
-        _("Description of project, or a link to a video"), null=True, blank=True
-    )
+    slug = models.SlugField(unique=True, max_length=255, db_index=True)
     is_approved = models.BooleanField(_("approved"), default=False)
-    email = models.EmailField(_("Email where we can contact the changemaker"))
     # The task that is used for managing this request
     task = models.ForeignKey(Task, on_delete=models.SET_NULL, null=True, blank=True)
     google_doc_url = models.URLField(

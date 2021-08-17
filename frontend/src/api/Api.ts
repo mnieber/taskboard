@@ -33,7 +33,7 @@ export class Api extends ApiBase {
 
   postRejectProjectRequestForm(
     projectRequestId: string,
-    sendEmail: bool,
+    sendEmail: boolean,
     emailTo: string,
     emailBody: string
   ) {

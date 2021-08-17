@@ -13,7 +13,6 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "django_extensions",
     "graphene_django",
-    "graphql_auth",
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
 ]
 

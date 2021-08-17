@@ -1,6 +1,14 @@
 import { ObjT } from 'src/utils/types';
 
+export class EventTopic {
+  text: string;
+
+  constructor(text: string) {
+    this.text = text;
+  }
+}
+
 export type EventT = {
-  topic: string;
-  payload?: ObjT;
+  payload: ObjT;
+  topic: EventTopic;
 };
