@@ -16,6 +16,12 @@ pip-compile:
 install:
 	pip install -r requirements.dev.txt
 
+install-editable-packages:
+	pip uninstall django-rtk
+	pip install -e /pypi/django-rtk
+	pip uninstall django-rtk-green
+	pip install -e /pypi/django-rtk-green
+
 setup: create-db pip-compile install
 	python manage.py migrate
 	python manage.py createsuperuser

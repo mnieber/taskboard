@@ -20,25 +20,23 @@ class ProjectRequest(Entity):
     changemaker_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
     description = models.TextField()
-    email = models.EmailField()
-    location = models.CharField(max_length=255)
-    project_name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, max_length=255, db_index=True)
-    is_approved = models.BooleanField(_("approved"), default=False)
-    # The task that is used for managing this request
-    task = models.ForeignKey(Task, on_delete=models.SET_NULL, null=True, blank=True)
-    google_doc_url = models.URLField(
-        _("Contains additional onboarding information"),
-        max_length=255,
-        null=True,
-        blank=True,
-    )
     description_url = models.URLField(
         _("A video describing the project"),
-        max_length=255,
+        null=True,
+        blank=True
+    )
+    email = models.EmailField()
+    google_doc_url = models.URLField(
+        _("Contains additional onboarding information"),
         null=True,
         blank=True,
     )
+    is_approved = models.BooleanField(default=False)
+    location = models.CharField(max_length=255)
+    project_name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    # The task that is used for managing this request
+    task = models.ForeignKey(Task, on_delete=models.SET_NULL, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:

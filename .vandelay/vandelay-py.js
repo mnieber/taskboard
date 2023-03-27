@@ -8,7 +8,5 @@ const baseDir = '/home/maarten/projects/faid/taskboard/src/backend/';
 
 module.exports = {
   // This is the only required property. At least one path must be included.
-  includePaths: [
-    baseDir
-  ],
-}
+  includePaths: [baseDir],
+};

@@ -3,11 +3,11 @@ from django.http import HttpResponseRedirect
 from django.urls import path
 from faker import Faker
 
-from .models import ProjectRequest
+from project_requests import models
 from .utils import create_project_request
 
 
-@admin.register(ProjectRequest)
+@admin.register(models.ProjectRequest)
 class ProjectRequestAdmin(admin.ModelAdmin):
     change_list_template = "project_requests/admin/project_requests_changelist.html"
 

@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install \
     black               ` # via black` \
     isort               ` # via isort` \
-    pgcli==2.1.1        ` # via django` \
+    pgcli==2.1.1        ` # via django-app` \
     pip-tools           ` # via pip-compile`
 
 # create a python venv that we can easily store inside a docker volume

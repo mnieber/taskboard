@@ -14,6 +14,8 @@ export const resUrls = {
 export class ProjectRequestsStore {
   @observable projectRequestById: ProjectRequestByIdT = {};
 
+  resUrls = () => resUrls;
+
   constructor() {
     makeObservable(this);
   }

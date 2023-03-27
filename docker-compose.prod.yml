@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   backend:
@@ -6,14 +6,15 @@ services:
       context: ./backend
       dockerfile: Dockerfile.prod
     depends_on:
-    - postgres
+      - postgres
     env_file:
-    - ./env/postgres.env
+      - ./env/backend.env
+      - ./env/postgres.env
     environment:
-    - DJANGO_SETTINGS_MODULE=app.settings.prod
+      - DJANGO_SETTINGS_MODULE=app.settings.prod
     image: taskboard_backend
     ports:
-    - 8000:8000
+      - 8000:8000
     volumes: []
   frontend:
     build:
@@ -22,14 +23,14 @@ services:
     depends_on: []
     image: taskboard_frontend
     ports:
-    - 3000:3000
+      - 3000:3000
     volumes: []
   postgres:
     depends_on: []
     env_file:
-    - ./env/postgres.env
+      - ./env/postgres.env
     image: postgres:11.5
     ports:
-    - 5432:5432
+      - 5432:5432
     volumes: []
 volumes: {}
